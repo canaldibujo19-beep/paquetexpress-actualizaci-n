@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PAQUETEXPRESS - Rastreo de Envíos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .form-inline { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+    .form-inline input { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #ccc; }
+    .resultado { margin-top: 20px; padding: 15px; background: #f5f5f5; border-radius: 12px; }
+    .resultado.hidden { display: none; }
+    .estado { margin: 10px 0; padding: 10px; border-left: 4px solid #b11226; background: #fff; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><img src="assets/images/LOGOAZUL.png" alt="logo"></a>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="precios.html">Precios y Cotizaciones</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="rastreo.html" class="active">Rastreo</a></li>
+          <li><a href="historia.html">Historia</a></li>
+          <li><a href="mapa.html">Sucursales</a></li>
+          <li><a href="contacto.html">Contáctanos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Rastrea tu envío</h1>
+    <section class="section rastreo">
+      <p>Ingresa tu número de guía para obtener el estado de tu envío (simulación).</p>
+      <form id="rastreoForm" onsubmit="return buscarGuia(event)" class="form-inline">
+        <input type="text" id="guia" placeholder="Ej: PX1234567890" required>
+        <button class="btn" type="submit">Buscar</button>
+      </form>
+
+      <div id="estadoResultado" class="resultado hidden"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <img src="assets/images/LOGOBLANCO.png" alt="PAQUETEXPRESS" class="logo-footer">
+        <p>Tel: +52 (55) 1234 5678<br>Email: contacto@paquetexpress.mx</p>
+      </div>
+      <div class="footer-col">
+        <h4>Ayuda rápida</h4>
+        <ul>
+        <li><a href="https://www.paquetexpress.com.mx/preguntas-frecuentes">FAQ</a></li>
+          <li><a href="https://www.paquetexpress.com.mx/aviso-de-privacidad">Aviso de Privacidad</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Síguenos</h4>
+        <div class="socials">
+          <a href="https://www.facebook.com/PaquetexpressOficial/?locale=es_LA" aria-label="Facebook">FB</a>
+          <a href="https://x.com/Paquetexpress?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" aria-label="Twitter">TW</a>
+          <a href="https://www.instagram.com/paquetexpress.oficial/?hl=es" aria-label="instagram">IG</a>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright">
+      <small>© PAQUETEXPRESS 2025. Todos los derechos reservados.</small>
+    </div>
+  </footer>
+
+  <script>
+    const estadosSimulados = [
+      { status: "Recibido en almacén", fecha: "2025-09-29 08:00" },
+      { status: "En tránsito", fecha: "2025-09-29 12:30" },
+      { status: "En ciudad de destino", fecha: "2025-09-30 09:45" },
+      { status: "Listo para entrega", fecha: "2025-09-30 14:00" },
+      { status: "Entregado", fecha: "2025-09-30 16:30" }
+    ];
+
+    function buscarGuia(event) {
+      event.preventDefault();
+      const guia = document.getElementById("guia").value.trim();
+      const resultado = document.getElementById("estadoResultado");
+
+      if (!guia) return;
+
+      resultado.innerHTML = "<p>Buscando guía <strong>" + guia + "</strong>...</p>";
+      resultado.classList.remove("hidden");
+
+      setTimeout(() => {
+        let html = `<h3>Estado de envío: ${guia}</h3>`;
+        estadosSimulados.forEach(e => {
+          html += `<div class="estado"><strong>${e.status}</strong><br><small>${e.fecha}</small></div>`;
+        });
+        resultado.innerHTML = html;
+      }, 1000); // simulamos retraso de búsqueda
+    }
+  </script>
+</body>
+</html>

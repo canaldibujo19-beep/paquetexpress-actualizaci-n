@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PAQUETEXPRESS - Sucursales y Mapa Interactivo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .mapa-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .sucursales-list-container {
+      flex: 1 1 300px;
+      max-width: 350px;
+    }
+    .sucursales-list-container ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sucursales-list-container li {
+      cursor: pointer;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      transition: background 0.3s;
+    }
+    .sucursales-list-container li:hover {
+      background-color: #f2f2f2;
+    }
+    #map {
+      flex: 2 1 600px;
+      height: 420px;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><img src="assets/images/LOGOAZUL.png" alt="logo"></a>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="precios.html">Precios y Cotizaciones</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="rastreo.html">Rastreo</a></li>
+          <li><a href="historia.html">Historia</a></li>
+          <li><a href="mapa.html" class="active">Sucursales</a></li>
+          <li><a href="contacto.html">Contáctanos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Nuestras Sucursales</h1>
+    <section class="section mapa-section">
+      <div class="mapa-grid">
+        <!-- Listado de sucursales -->
+        <div class="sucursales-list-container">
+          <h2>Haz clic en una sucursal para verla en el mapa</h2>
+          <ul id="sucursales-list">
+            <li data-lat="19.4326" data-lng="-99.1332">CDMX - Centro: Av. Reforma 123</li>
+            <li data-lat="20.6597" data-lng="-103.3496">Guadalajara: Av. Vallarta 456</li>
+            <li data-lat="25.6866" data-lng="-100.3161">Monterrey: Av. Constitución 789</li>
+            <li data-lat="20.5888" data-lng="-100.3899">Querétaro: Blvd. Bernardo Quintana 101</li>
+          </ul>
+        </div>
+
+        <!-- Mapa -->
+        <div id="map"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <img src="assets/images/LOGOBLANCO.png" alt="PAQUETEXPRESS" class="logo-footer">
+        <p>Tel: +52 (55) 1234 5678<br>Email: contacto@paquetexpress.mx</p>
+      </div>
+      <div class="footer-col">
+        <h4>Ayuda rápida</h4>
+        <ul>
+         <li><a href="https://www.paquetexpress.com.mx/preguntas-frecuentes">FAQ</a></li>
+          <li><a href="https://www.paquetexpress.com.mx/aviso-de-privacidad">Aviso de Privacidad</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Síguenos</h4>
+        <div class="socials">
+          <a href="https://www.facebook.com/PaquetexpressOficial/?locale=es_LA" aria-label="Facebook">FB</a>
+          <a href="https://x.com/Paquetexpress?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" aria-label="Twitter">TW</a>
+          <a href="https://www.instagram.com/paquetexpress.oficial/?hl=es" aria-label="instagram">IG</a>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright">
+      <small>© PAQUETEXPRESS 2025. Todos los derechos reservados.</small>
+    </div>
+  </footer>
+
+  <script>
+    let map;
+    const markers = [];
+
+    function initMap() {
+      const centerMexico = { lat: 23.6345, lng: -102.5528 };
+
+      // Crear mapa
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 5,
+        center: centerMexico
+      });
+
+      // Inicializar marcadores desde lista
+      const listItems = document.querySelectorAll("#sucursales-list li");
+      listItems.forEach(item => {
+        const lat = parseFloat(item.dataset.lat);
+        const lng = parseFloat(item.dataset.lng);
+        const position = { lat, lng };
+
+        const marker = new google.maps.Marker({
+          position,
+          map,
+          title: item.textContent
+        });
+        markers.push(marker);
+
+        const infoWindow = new google.maps.InfoWindow({
+          content: `<strong>${item.textContent}</strong>`
+        });
+
+        marker.addListener("click", () => {
+          infoWindow.open(map, marker);
+        });
+
+        // Evento clic en la lista
+        item.addEventListener("click", () => {
+          map.setCenter(position);
+          map.setZoom(12);
+          infoWindow.open(map, marker);
+        });
+      });
+    }
+  </script>
+  <!-- Reemplaza YOUR_API_KEY con tu clave real de Google Maps -->
+  <script async 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk8b1xl7Yk-4F4mL9FwMeoQlkLSiMq0oA&callback=initMap">
+  </script>
+</body>
+</html>

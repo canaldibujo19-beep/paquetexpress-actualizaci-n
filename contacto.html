@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PAQUETEXPRESS - Contacto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="assets/images/LOGOAZUL.png" alt="PAQUETEXPRESS logo">
+      </a>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="precios.html">Precios y Cotizaciones</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="rastreo.html">Rastreo</a></li>
+          <li><a href="historia.html">Historia</a></li>
+          <li><a href="mapa.html">Sucursales</a></li>
+          <li><a href="contacto.html">Contáctanos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container">
+    <h1>Contáctanos</h1>
+    <section class="section contacto">
+      <form id="contactForm" onsubmit="return validarContacto(event)" class="form-grid">
+        <label>
+          Nombre
+          <input type="text" id="nombre" required>
+        </label>
+        <label>
+          Email
+          <input type="email" id="email" required>
+        </label>
+        <label>
+          Teléfono
+          <input type="tel" id="telefono">
+        </label>
+        <label>
+          Asunto
+          <input type="text" id="asunto">
+        </label>
+        <label class="full">
+          Mensaje
+          <textarea id="mensaje" rows="6" required></textarea>
+        </label>
+        <div class="form-actions">
+          <button class="btn btn-cta" type="submit">Enviar mensaje</button>
+        </div>
+      </form>
+
+      <div class="contact-info">
+        <h2>Información</h2>
+        <p>Tel: +52 (55) 1234 5678<br>Chat: Disponible L-V 9:00 - 18:00</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <img src="assets/images/LOGOBLANCO.png" alt="PAQUETEXPRESS" class="logo-footer">
+        <p>Tel: +52 (55) 1234 5678<br>Email: contacto@paquetexpress.mx</p>
+      </div>
+      <div class="footer-col">
+        <h4>Ayuda rápida</h4>
+        <ul>
+          <li><a href="https://www.paquetexpress.com.mx/preguntas-frecuentes">FAQ</a></li>
+          <li><a href="https://www.paquetexpress.com.mx/aviso-de-privacidad">Aviso de Privacidad</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Síguenos</h4>
+        <div class="socials">
+          <a href="https://www.facebook.com/PaquetexpressOficial/?locale=es_LA" aria-label="Facebook">FB</a>
+          <a href="https://x.com/Paquetexpress?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" aria-label="Twitter">TW</a>
+          <a href="https://www.instagram.com/paquetexpress.oficial/?hl=es" aria-label="instagram">IG</a>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright">
+      <small>© PAQUETEXPRESS 2025. Todos los derechos reservados.</small>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
