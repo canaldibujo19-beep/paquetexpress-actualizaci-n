@@ -1,0 +1,57 @@
+/* PAQUETEXPRESS - Hoja de estilos principal */
+:root{
+  --brand-blue:#004b93;
+  --accent:#ff9a00;
+  --muted:#f4f6fb;
+  --white:#ffffff;
+  --max-width:1100px;
+}
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; margin:0; color:#222; background:var(--muted); -webkit-font-smoothing:antialiased}
+.container{max-width:var(--max-width); margin:0 auto; padding:24px}
+.site-header{background:var(--white); border-bottom:1px solid #e6eef8; position:sticky; top:0; z-index:50}
+.header-inner{display:flex; align-items:center; justify-content:space-between; gap:16px}
+.logo img{height:48px}
+.nav ul{list-style:none; display:flex; gap:12px; margin:0; padding:0}
+.nav a{display:inline-block; padding:12px 8px; text-decoration:none; color:var(--brand-blue); font-weight:600}
+.hero{background:linear-gradient(90deg, rgba(0,75,147,0.05), rgba(255,154,0,0.02)); padding:48px 0}
+.hero-inner{display:flex; gap:32px; align-items:center}
+.hero-copy h1{font-size:2rem; margin:0 0 12px; color:var(--brand-blue)}
+.hero-copy p{margin:0 0 18px}
+.hero-image img{max-width:420px; width:100%; border-radius:12px; box-shadow:0 8px 30px rgba(0,0,0,0.08)}
+.btn{background:#fff; border:2px solid var(--brand-blue); padding:10px 18px; border-radius:8px; cursor:pointer; font-weight:600}
+.btn:hover{transform:translateY(-2px)}
+.btn-cta{background:var(--brand-blue); color:var(--white); border-color:var(--brand-blue)}
+.btn-cta:hover{filter:brightness(0.95)}
+.section{padding:36px 0}
+.cards{display:flex; gap:18px; margin-top:16px}
+.card{background:#fff; padding:18px; border-radius:10px; flex:1; box-shadow:0 6px 18px rgba(2,6,23,0.04)}
+.testimonials blockquote{background:#fff; padding:18px; border-left:4px solid var(--brand-blue); margin:12px 0; border-radius:8px}
+.site-footer{background:var(--brand-blue); color:#fff; padding:28px 0 12px}
+.footer-inner{display:flex; gap:18px; align-items:flex-start; justify-content:space-between}
+.footer-col{flex:1}
+.logo-footer{height:32px}
+.socials a{display:inline-block; margin-right:8px; padding:6px 8px; background:rgba(255,255,255,0.08); border-radius:6px; color:#fff; text-decoration:none}
+.form-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px}
+.form-grid label{display:block; background:#fff; padding:10px; border-radius:8px}
+.form-grid .full{grid-column:1/-1}
+.form-actions{grid-column:1/-1}
+.tabla-precios, .tabla-referencial{width:100%; border-collapse:collapse; background:#fff; border-radius:8px; overflow:hidden}
+.tabla-precios th, .tabla-precios td, .tabla-referencial th, .tabla-referencial td{padding:10px; border-bottom:1px solid #eef6ff; text-align:left}
+
+/* Responsive */
+@media (max-width:900px){
+  .hero-inner{flex-direction:column}
+  .cards{flex-direction:column}
+  .form-grid{grid-template-columns:1fr}
+  .nav ul{flex-wrap:wrap}
+}
+@media (max-width:480px){
+  .header-inner{padding:8px}
+  .hero-copy h1{font-size:1.4rem}
+  .logo img{height:40px}
+}
+
+/* Utilities */
+.hidden{display:none}
+.resultado{margin-top:16px}
